@@ -1,8 +1,127 @@
 ﻿@{
-    ViewData["Title"] = "Home page";
+    Layout = null; 
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>D-SCAN LOGIN</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .right {
+            flex: 1;
+            padding: 30px;
+            border-left: 3px solid #e1b12c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-box {
+            border: 2px solid #e1b12c;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box img {
+            width: 80px;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #e1b12c;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #fbc531;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            alert('@TempData["Success"]');
+            window.location.href = '@Url.Action("HomePage", "Home")';
+        </script>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <script>
+            alert('@TempData["Error"]');
+        </script>
+    }
+
+    <div class="container">
+        <div class="left">
+            <img src="~/img/idtlogo.png" alt="IDT Logo" />
+        </div>
+        <div class="right">
+            <div class="login-box">
+                <img src="~/img/idtlogo.png" alt="Logo" style="width: 250px; margin-bottom: 5px;" />
+                <h2 style="margin-top: -10px;">D-SCAN LOGIN</h2>
+                <form method="post" asp-controller="Home" asp-action="Login">
+                    <label>UserID:</label>
+                    <input type="text" name="userid" required />
+                    <label>Password:</label>
+                    <input type="password" name="password" required />
+                    <button class="btn" type="submit">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
