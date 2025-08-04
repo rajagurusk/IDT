@@ -1,14 +1,19 @@
+using IDT.Data;
 using IDT.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly ApplicationDbContext _context;
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context; 
+
     }
 
     public IActionResult Index()
@@ -19,7 +24,8 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Login(string userid, string password)
     {
-        if (userid == "IDT" && password == "Idt@1234")
+        var user = _context.User.FirstOrDefault(u => u.UserId == userid && u.Password == password);
+        if (user != null)
         {
             {
                 TempData["Success"] = "Logged in successfully!";
