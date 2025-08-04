@@ -22,9 +22,9 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(string userid, string password)
+    public IActionResult Login(string UserId, string Password)
     {
-        var user = _context.User.FirstOrDefault(u => u.UserId == userid && u.Password == password);
+        var user = _context.Users.FirstOrDefault(u => u.UserId == UserId && u.Password == Password);
         if (user != null)
         {
             {

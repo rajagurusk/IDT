@@ -1,6 +1,11 @@
-﻿namespace IDT.Models
-{
-    public class User
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace IDT.Models
+
+
+{ 
+[Table("Users")]
+public class User
     {
         public int Id { get; set; }
         public string UserId { get; set; }
