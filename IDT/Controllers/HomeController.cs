@@ -12,7 +12,7 @@ public class HomeController : Controller
     public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
-        _context = context; 
+        _context = context;
 
     }
 
